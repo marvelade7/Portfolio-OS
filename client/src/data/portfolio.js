@@ -29,38 +29,24 @@ export const fallbackPortfolio = {
                 href: "mailto:marveladedewuyi@gmail.com",
             },
         ],
-        stats: [
-            { label: "Experience", value: "4+ yrs" },
-            { label: "Projects", value: "18" },
-            { label: "Focus", value: "Web apps" },
+        experience: [
+            {
+                role: "Software Engineer",
+                company: "Full-Stack Web Development",
+                period: "Present",
+                summary:
+                    "Experienced in building modern web applications using React, TypeScript, Node.js, Express.js, and Python. Passionate about creating responsive, user-focused applications with clean code and intuitive user experiences.",
+            },
         ],
-    },
-    skills: [
-        {
-            group: "Frontend",
-            items: ["React", "Next.js", "Tailwind CSS", "Bootstrap"],
-        },
-        {
-            group: "Backend",
-            items: ["Node.js", "Express.js", "MongoDB", "GraphQL"],
-        },
-        {
-            group: "Tools",
-            items: ["TypeScript", "JavaScript", "Git", "GitHub", "Linux"],
-        },
-    ],
-    projects: [
-        {
-            title: "Aptly CRM",
-            slug: "aptly-crm",
-            type: "SaaS Dashboard",
-            category: "Full Stack",
-            status: "Completed",
-            createdDate: "2026-03-08",
-            thumbnail: "",
-            description:
-                "A quiet operations dashboard with lead scoring, pipeline views, and fast keyboard-led search.",
-            stack: ["React", "Express", "MongoDB", "Tailwind"],
+        education: [
+            {
+                school: "Ladoke Akintola University of Technology",
+                credential: "B.Sc. Computer Science",
+                period: "Currently pursuing",
+                summary:
+                    "Currently pursuing a Bachelor's degree in Computer Science with a strong foundation in data structures, algorithms, computer architecture, and software development.",
+            },
+        ],
             techStack: ["React", "Express", "MongoDB", "Tailwind"],
             impact: "Cut weekly reporting time by 62%.",
             repo: "https://www.github.com/marvelade7",

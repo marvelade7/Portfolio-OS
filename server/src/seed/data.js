@@ -35,34 +35,20 @@ export const profile = {
     ],
     experience: [
         {
-            role: "Full Stack Developer",
-            company: "Freelance / Product Studio Work",
-            period: "2022 - Present",
+            role: "Software Engineer",
+            company: "Full-Stack Web Development",
+            period: "Present",
             summary:
-                "Builds portfolio systems, dashboards, and internal tools with React, Node.js, and MongoDB.",
-        },
-        {
-            role: "Frontend Developer",
-            company: "Independent Client Projects",
-            period: "2020 - 2022",
-            summary:
-                "Shipped responsive marketing sites, admin panels, and interaction-heavy UI prototypes.",
+                "Experienced in building modern web applications using React, TypeScript, Node.js, Express.js, and Python. Passionate about creating responsive, user-focused applications with clean code and intuitive user experiences.",
         },
     ],
     education: [
         {
-            school: "Self-Directed Study",
-            credential: "Web Development",
-            period: "2019 - Present",
+            school: "Ladoke Akintola University of Technology",
+            credential: "B.Sc. Computer Science",
+            period: "Currently pursuing",
             summary:
-                "Continuous study of modern JavaScript, UI systems, backend APIs, and deployment workflows.",
-        },
-        {
-            school: "Online Learning",
-            credential: "Computer Science Fundamentals",
-            period: "2018 - 2020",
-            summary:
-                "Focused on programming basics, data structures, and practical software engineering habits.",
+                "Currently pursuing a Bachelor's degree in Computer Science with a strong foundation in data structures, algorithms, computer architecture, and software development.",
         },
     ],
 };
