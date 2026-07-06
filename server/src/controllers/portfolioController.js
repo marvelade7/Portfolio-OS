@@ -156,7 +156,7 @@ export async function getPortfolio(req, res, next) {
         }
 
         const [profileDoc, projectDocs] = await Promise.all([
-            Profile.findOne({ username: "devuser" }).lean(),
+            Profile.findOne({ username: "marvelade" }).lean(),
             Project.find().sort({ createdAt: 1 }).lean(),
         ]);
 
@@ -188,7 +188,7 @@ export async function getProfile(req, res, next) {
         }
 
         const profileDoc = await Profile.findOne({
-            username: "devuser",
+            username: "marvelade",
         }).lean();
         const mongoProfile = plain(profileDoc) || fallbackProfile;
         res.json({
@@ -216,7 +216,7 @@ export async function getAbout(req, res, next) {
         }
 
         const profileDoc = await Profile.findOne({
-            username: "devuser",
+            username: "marvelade",
         }).lean();
         const mongoProfile = plain(profileDoc) || fallbackProfile;
 
