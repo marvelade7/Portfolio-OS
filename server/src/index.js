@@ -67,10 +67,18 @@ app.use((error, req, res, next) => {
     });
 });
 
-await connectDB();
+// await connectDB();
 
 const server = app.listen(port, () => {
     console.log(`Ubuntu portfolio API listening on http://localhost:${port}`);
+});
+
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    console.log("MongoDB connected");
+})
+.catch((error) => {
+    console.error("MongoDB connection error:", error);
 });
 
 process.on("SIGTERM", shutdown);
