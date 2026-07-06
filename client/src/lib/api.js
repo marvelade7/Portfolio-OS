@@ -60,8 +60,12 @@ export async function createProject(payload) {
     );
 }
 
-export async function fetchProjects() {
-    return readJson(await fetch(`${API_BASE}/projects`));
+export async function fetchProjects(categorySlug) {
+    const endpoint = categorySlug
+        ? `${API_BASE}/categories/${encodeURIComponent(categorySlug)}/projects`
+        : `${API_BASE}/projects`;
+
+    return readJson(await fetch(endpoint));
 }
 
 export async function fetchAbout() {
