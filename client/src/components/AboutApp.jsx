@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { fetchAbout, fetchSkills } from "../lib/api.js";
 
-const browserUrl = "file:///home/devuser/about";
+const browserUrl = "file:///home/marvelade/about";
 
 const iconBySkillGroup = {
     Frontend: LayoutGrid,
@@ -27,12 +27,17 @@ const iconBySkillGroup = {
 
 const iconBySkillName = {
     react: Layers3,
+    "next.js": Layers3,
     "tailwind css": Palette,
-    accessibility: ShieldCheck,
+    bootstrap: Palette,
+    typescript: BadgeCheck,
+    javascript: Terminal,
     "node.js": ServerCog,
-    express: Route,
+    "express.js": Route,
     mongodb: Database,
+    graphql: ServerCog,
     git: GitBranch,
+    github: GitBranch,
     linux: Terminal,
 };
 

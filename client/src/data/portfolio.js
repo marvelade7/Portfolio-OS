@@ -2,11 +2,11 @@ import profilePic from "../assets/profilePro.png";
 
 export const fallbackPortfolio = {
     profile: {
-        username: "devuser",
+        username: "marvelade",
         name: "Marvel Ade",
         title: "Full-stack Developer",
         location: "Lagos, Nigeria",
-        email: "hello@devuser.dev",
+        email: "marveladedewuyi@gmail.com",
         avatarInitials: "MA",
         avatar: profilePic,
         bio: "I build polished web experiences with React, Node, accessible UI systems, and practical product thinking.",
@@ -15,18 +15,18 @@ export const fallbackPortfolio = {
         socials: [
             {
                 label: "GitHub",
-                value: "github.com/marvelade",
-                href: "https://github.com/marvelade",
+                value: "github.com/marvelade7",
+                href: "https://www.github.com/marvelade7",
             },
             {
                 label: "LinkedIn",
-                value: "linkedin.com/in/devuser",
-                href: "https://linkedin.com",
+                value: "linkedin.com/in/marvellous-adewuyi-a32070278",
+                href: "https://www.linkedin.com/in/marvellous-adewuyi-a32070278/",
             },
             {
                 label: "Email",
-                value: "hello@devuser.dev",
-                href: "mailto:hello@devuser.dev",
+                value: "marveladedewuyi@gmail.com",
+                href: "mailto:marveladedewuyi@gmail.com",
             },
         ],
         stats: [
@@ -38,13 +38,16 @@ export const fallbackPortfolio = {
     skills: [
         {
             group: "Frontend",
-            items: ["React", "Tailwind CSS", "Design systems", "Accessibility"],
+            items: ["React", "Next.js", "Tailwind CSS", "Bootstrap"],
         },
         {
             group: "Backend",
-            items: ["Node.js", "Express", "MongoDB", "REST APIs"],
+            items: ["Node.js", "Express.js", "MongoDB", "GraphQL"],
         },
-        { group: "Tools", items: ["Git", "Linux", "Docker", "Vite"] },
+        {
+            group: "Tools",
+            items: ["TypeScript", "JavaScript", "Git", "GitHub", "Linux"],
+        },
     ],
     projects: [
         {
@@ -60,8 +63,8 @@ export const fallbackPortfolio = {
             stack: ["React", "Express", "MongoDB", "Tailwind"],
             techStack: ["React", "Express", "MongoDB", "Tailwind"],
             impact: "Cut weekly reporting time by 62%.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -77,8 +80,8 @@ export const fallbackPortfolio = {
             stack: ["React", "IndexedDB", "Node.js"],
             techStack: ["React", "IndexedDB", "Node.js"],
             impact: "Designed for sub-100ms document switching.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -94,8 +97,8 @@ export const fallbackPortfolio = {
             stack: ["Express", "MongoDB", "Webhooks"],
             techStack: ["Express", "MongoDB", "Webhooks"],
             impact: "Tracks releases across 12 services.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -111,8 +114,8 @@ export const fallbackPortfolio = {
             stack: ["HTML"],
             techStack: ["HTML"],
             impact: "Built as a lightweight semantic layout reference.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -128,8 +131,8 @@ export const fallbackPortfolio = {
             stack: ["HTML", "CSS"],
             techStack: ["HTML", "CSS"],
             impact: "Ships without JavaScript and keeps layout shift near zero.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -145,8 +148,8 @@ export const fallbackPortfolio = {
             stack: ["HTML", "CSS", "JavaScript"],
             techStack: ["HTML", "CSS", "JavaScript"],
             impact: "Prototype for lightweight offline productivity flows.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {
@@ -162,8 +165,8 @@ export const fallbackPortfolio = {
             stack: ["React", "Tailwind CSS", "Vite"],
             techStack: ["React", "Tailwind CSS", "Vite"],
             impact: "Designed for quick scanning across large catalogs.",
-            repo: "https://github.com/marvelade",
-            github: "https://github.com/marvelade",
+            repo: "https://www.github.com/marvelade7",
+            github: "https://www.github.com/marvelade7",
             demo: "https://example.com",
         },
         {

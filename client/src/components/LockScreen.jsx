@@ -54,7 +54,7 @@ export default function LockScreen({ unlocking, onUnlock }) {
                         alt="Profile"
                         className="mb-6 h-28 w-28 rounded-full border border-white/20 object-cover shadow-ubuntu transition-all duration-200"
                     />
-                    <div className="text-xl font-medium">devuser</div>
+                    <div className="text-xl font-medium">marvelade</div>
                     <div className="mt-6 flex items-end gap-2">
                         <div className="text-7xl font-light leading-none sm:text-8xl">
                             {time}
