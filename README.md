@@ -48,3 +48,7 @@ npm run dev:server      # Express only
 npm run build           # production frontend build
 npm run asset:wallpaper # regenerate the PNG wallpaper
 ```
+
+## Managing Projects
+
+Run `node scripts/addProject.js` to add or update a project, after editing the object at the top of the file or `scripts/projects-to-add.json` first.

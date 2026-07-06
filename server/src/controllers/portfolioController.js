@@ -107,7 +107,7 @@ function slugify(value) {
     );
 }
 
-function normalizeProjectPayload(body) {
+export function normalizeProjectPayload(body) {
     const title = String(body.title || "").trim();
     const description = String(body.description || "").trim();
     const category = projectCategories.includes(body.category)
