@@ -1,12 +1,12 @@
 import DockIcon from "./os/DockIcon.jsx";
 import FolderIcon from "./os/FolderIcon.jsx";
+import TerminalIcon from "./os/TerminalIcon.jsx";
+import BrowserIcon from "./os/BrowserIcon.jsx";
+import EmailIcon from "./os/EmailIcon.jsx";
 import {
     // AddGlyph,
-    ContactGlyph,
     LauncherGlyph,
     ProjectsGlyph,
-    TerminalGlyph,
-    WebGlyph,
 } from "./os/DockGlyphs.jsx";
 
 export default function Dock({ apps, openWindows, onOpenApp, onLauncher }) {
@@ -29,11 +29,11 @@ export default function Dock({ apps, openWindows, onOpenApp, onLauncher }) {
                             />
                         ),
                         terminal: (
-                            <TerminalGlyph className="h-7 w-7 text-white" />
+                            <TerminalIcon className="h-12 w-12" />
                         ),
-                        about: <WebGlyph className="h-7 w-7 text-white" />,
+                        about: <BrowserIcon className="h-12 w-12" />,
                         contact: (
-                            <ContactGlyph className="h-7 w-7 text-white" />
+                            <EmailIcon className="h-12 w-12" />
                         ),
                         projects: (
                             <ProjectsGlyph className="h-7 w-7 text-white" />
