@@ -7,6 +7,7 @@ import {
     profile as fallbackProfile,
     projects as fallbackProjects,
     skills as fallbackSkills,
+    skillItems as fallbackSkillItems,
 } from "../seed/data.js";
 
 const memoryMessages = [];
@@ -238,72 +239,27 @@ export async function getSkills(req, res, next) {
     try {
         if (!isMongoReady()) {
             res.json({
-                skills: [
-                    {
-                        name: "React",
-                        icon: "react",
-                        level: "Advanced",
-                        category: "Frontend",
-                    },
-                    {
-                        name: "Tailwind CSS",
-                        icon: "palette",
-                        level: "Advanced",
-                        category: "Frontend",
-                    },
-                    {
-                        name: "Accessibility",
-                        icon: "shield-check",
-                        level: "Advanced",
-                        category: "Frontend",
-                    },
-                    {
-                        name: "Node.js",
-                        icon: "server",
-                        level: "Advanced",
-                        category: "Backend",
-                    },
-                    {
-                        name: "Express",
-                        icon: "route",
-                        level: "Advanced",
-                        category: "Backend",
-                    },
-                    {
-                        name: "MongoDB",
-                        icon: "database",
-                        level: "Advanced",
-                        category: "Backend",
-                    },
-                    {
-                        name: "Git",
-                        icon: "git-branch",
-                        level: "Advanced",
-                        category: "Tools",
-                    },
-                    {
-                        name: "Linux",
-                        icon: "terminal",
-                        level: "Advanced",
-                        category: "Tools",
-                    },
-                ],
+                skills: fallbackSkillItems,
                 source: "fallback",
             });
             return;
         }
 
+        const mongoSkills = await Skill.find()
+            .sort({ category: 1, name: 1 })
+            .lean();
+
         res.json({
-            skills: (
-                await Skill.find().sort({ category: 1, name: 1 }).lean()
-            ).map((skill) => ({
-                id: skill._id,
-                name: skill.name,
-                icon: skill.icon,
-                level: skill.level,
-                category: skill.category,
-            })),
-            source: "mongo",
+            skills: mongoSkills.length
+                ? mongoSkills.map((skill) => ({
+                      id: skill._id,
+                      name: skill.name,
+                      icon: skill.icon,
+                      level: skill.level,
+                      category: skill.category,
+                  }))
+                : fallbackSkillItems,
+            source: mongoSkills.length ? "mongo" : "fallback",
         });
     } catch (error) {
         next(error);

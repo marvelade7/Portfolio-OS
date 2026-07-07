@@ -186,4 +186,18 @@ export const fallbackPortfolio = {
             },
         ],
     },
+    skills: [
+        { name: "React", icon: "react", level: "Advanced", category: "Frontend" },
+        { name: "Next.js", icon: "next.js", level: "Advanced", category: "Frontend" },
+        { name: "Tailwind CSS", icon: "tailwind css", level: "Advanced", category: "Frontend" },
+        { name: "Bootstrap", icon: "bootstrap", level: "Advanced", category: "Frontend" },
+        { name: "Node.js", icon: "node.js", level: "Advanced", category: "Backend" },
+        { name: "Express.js", icon: "express.js", level: "Advanced", category: "Backend" },
+        { name: "MongoDB", icon: "mongodb", level: "Advanced", category: "Backend" },
+        { name: "GraphQL", icon: "graphql", level: "Advanced", category: "Backend" },
+        { name: "TypeScript", icon: "typescript", level: "Advanced", category: "Tools" },
+        { name: "JavaScript", icon: "javascript", level: "Advanced", category: "Tools" },
+        { name: "Git", icon: "git", level: "Advanced", category: "Tools" },
+        { name: "Linux", icon: "linux", level: "Advanced", category: "Tools" },
+    ],
 };

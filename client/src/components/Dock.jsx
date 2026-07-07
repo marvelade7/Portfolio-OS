@@ -15,7 +15,7 @@ export default function Dock({ apps, openWindows, onOpenApp, onLauncher }) {
             data-no-desktop-menu="true"
             className="fixed bottom-3 left-1/2 z-[105] flex min-w-[520px] -translate-x-1/2 items-center justify-center gap-3 rounded-2xl border border-white/10 bg-[rgb(57,14,41,.8)] px-5 py-2.5 shadow-ubuntu backdrop-blur-2xl transition-all duration-200"
         >
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-7">
                 {apps.map((app) => {
                     const windowState = openWindows.find(
                         (windowItem) => windowItem.id === app.id,
