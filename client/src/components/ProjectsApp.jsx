@@ -1,4 +1,4 @@
-import { ExternalLink, FolderOpen, GitBranch, RefreshCw } from "lucide-react";
+import { ChevronDown, ChevronUp, ExternalLink, FolderOpen, GitBranch, RefreshCw } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { fetchProjects } from "../lib/api.js";
 
@@ -7,6 +7,140 @@ const STATUS_STYLES = {
     "In Progress": "bg-[#fff4d6] text-[#8a5a00] ring-[#f0ddb0]",
     Archived: "bg-[#ece7ee] text-[#5d4c62] ring-[#d7cddd]",
 };
+
+function ProjectCard({ project }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const contentId = `project-content-${project.key}`;
+
+    return (
+        <article
+            className="rounded-2xl border border-[#ddd2ca] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#ccbdb4] hover:shadow-md"
+        >
+            <header className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                    <h2 className="text-xl font-semibold tracking-tight text-[#300A24]">
+                        {project.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-[#75606d]">
+                        {project.subtitle}
+                    </p>
+                </div>
+                <span
+                    className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ring-1 ${STATUS_STYLES[project.status] || STATUS_STYLES["In Progress"]}`}
+                >
+                    {project.status}
+                </span>
+            </header>
+
+            {/* Collapsed view: truncated description (2 lines with line-clamp) */}
+            {!isExpanded && (
+                <p className="mt-4 text-sm leading-6 text-[#41333d] line-clamp-2">
+                    {project.description}
+                </p>
+            )}
+
+            {/* Expanded view */}
+            <div
+                id={contentId}
+                className={`overflow-hidden transition-all duration-300 ${
+                    isExpanded ? "max-h-[1200px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"
+                }`}
+            >
+                {/* 1. Thumbnail (if exists) */}
+                {project.thumbnailUrl && (
+                    <div className="mb-4 overflow-hidden rounded-xl aspect-[16/9]">
+                        <img
+                            src={project.thumbnailUrl}
+                            alt={project.title}
+                            className="h-full w-full object-cover"
+                        />
+                    </div>
+                )}
+
+                {/* 2. Full untruncated description */}
+                <p className="text-sm leading-6 text-[#41333d]">
+                    {project.description}
+                </p>
+
+                {/* 3. Highlight/Impact */}
+                {project.highlight && (
+                    <p className="mt-3 text-sm font-semibold leading-6 text-[#C33F13]">
+                        {project.highlight}
+                    </p>
+                )}
+
+                {/* 4. Tech stack tags */}
+                {project.techStack && project.techStack.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                        {project.techStack.map((item) => (
+                            <span
+                                key={item}
+                                className="rounded-full bg-[#f0e9e4] px-3 py-1 text-xs font-medium text-[#5b4954]"
+                            >
+                                {item}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                {/* 5. Repo/Demo buttons */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                    {project.repoUrl && (
+                        <a
+                            href={project.repoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open repository for ${project.title} in a new tab`}
+                            className="inline-flex h-10 items-center gap-2 rounded-md border border-[#d7cbc3] bg-white px-3 text-sm font-semibold text-[#382a35] transition hover:border-[#E95420] hover:text-[#C33F13]"
+                        >
+                            <GitBranch size={16} />
+                            Repo
+                        </a>
+                    )}
+
+                    {project.demoUrl && (
+                        <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={`Open live demo for ${project.title} in a new tab`}
+                            className="inline-flex h-10 items-center gap-2 rounded-md bg-[#E95420] px-3 text-sm font-semibold text-white transition hover:bg-[#d84a19]"
+                        >
+                            <ExternalLink size={16} />
+                            Demo
+                        </a>
+                    )}
+                </div>
+            </div>
+
+            {/* Toggle Link/Button */}
+            <div className="mt-4 flex justify-start">
+                <button
+                    type="button"
+                    aria-expanded={isExpanded}
+                    aria-controls={contentId}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsExpanded(!isExpanded);
+                    }}
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#E95420] transition hover:text-[#d84a19] focus:outline-none focus:underline"
+                >
+                    {isExpanded ? (
+                        <>
+                            See less
+                            <ChevronUp size={16} />
+                        </>
+                    ) : (
+                        <>
+                            See more
+                            <ChevronDown size={16} />
+                        </>
+                    )}
+                </button>
+            </div>
+        </article>
+    );
+}
 
 export default function ProjectsApp({ categorySlug = null }) {
     const [projects, setProjects] = useState([]);
@@ -104,77 +238,9 @@ export default function ProjectsApp({ categorySlug = null }) {
                 )}
 
                 {status === "ready" && projects.length > 0 && (
-                    <div className="grid gap-5 lg:grid-cols-2">
+                    <div className="grid gap-5 lg:grid-cols-2 items-start">
                         {projects.map((project) => (
-                            <article
-                                key={project.key}
-                                className="rounded-2xl border border-[#ddd2ca] bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#ccbdb4] hover:shadow-md"
-                            >
-                                <header className="flex items-start justify-between gap-4">
-                                    <div className="min-w-0">
-                                        <h2 className="text-xl font-semibold tracking-tight text-[#300A24]">
-                                            {project.title}
-                                        </h2>
-                                        <p className="mt-1 text-sm text-[#75606d]">
-                                            {project.subtitle}
-                                        </p>
-                                    </div>
-                                    <span
-                                        className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ring-1 ${STATUS_STYLES[project.status] || STATUS_STYLES["In Progress"]}`}
-                                    >
-                                        {project.status}
-                                    </span>
-                                </header>
-
-                                <p className="mt-4 text-sm leading-6 text-[#41333d]">
-                                    {project.description}
-                                </p>
-
-                                {project.highlight && (
-                                    <p className="mt-3 text-sm font-semibold leading-6 text-[#C33F13]">
-                                        {project.highlight}
-                                    </p>
-                                )}
-
-                                <div className="mt-5 flex flex-wrap gap-2">
-                                    {project.techStack.map((item) => (
-                                        <span
-                                            key={item}
-                                            className="rounded-full bg-[#f0e9e4] px-3 py-1 text-xs font-medium text-[#5b4954]"
-                                        >
-                                            {item}
-                                        </span>
-                                    ))}
-                                </div>
-
-                                <div className="mt-6 flex flex-wrap gap-2">
-                                    {project.repoUrl && (
-                                        <a
-                                            href={project.repoUrl}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            aria-label={`Open repository for ${project.title} in a new tab`}
-                                            className="inline-flex h-10 items-center gap-2 rounded-md border border-[#d7cbc3] bg-white px-3 text-sm font-semibold text-[#382a35] transition hover:border-[#E95420] hover:text-[#C33F13]"
-                                        >
-                                            <GitBranch size={16} />
-                                            Repo
-                                        </a>
-                                    )}
-
-                                    {project.demoUrl && (
-                                        <a
-                                            href={project.demoUrl}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            aria-label={`Open live demo for ${project.title} in a new tab`}
-                                            className="inline-flex h-10 items-center gap-2 rounded-md bg-[#E95420] px-3 text-sm font-semibold text-white transition hover:bg-[#d84a19]"
-                                        >
-                                            <ExternalLink size={16} />
-                                            Demo
-                                        </a>
-                                    )}
-                                </div>
-                            </article>
+                            <ProjectCard key={project.key} project={project} />
                         ))}
                     </div>
                 )}
@@ -198,6 +264,7 @@ function normalizeProject(project) {
         techStack: Array.isArray(techStack) ? techStack : [],
         repoUrl: project.repo_url || project.repo || project.github || "",
         demoUrl: project.demo_url || project.demo || "",
+        thumbnailUrl: project.thumbnailUrl || project.thumbnail || "",
     };
 }
 

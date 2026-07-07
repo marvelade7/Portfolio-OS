@@ -1,23 +1,30 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const projectSchema = new mongoose.Schema(
-  {
-    title: { type: String, required: true, trim: true },
-    slug: { type: String, required: true, unique: true, trim: true },
-    type: { type: String, required: true, trim: true },
-    category: { type: String, default: 'Full Stack', trim: true },
-    status: { type: String, required: true, trim: true },
-    createdDate: String,
-    thumbnail: String,
-    description: { type: String, required: true },
-    stack: [String],
-    techStack: [String],
-    impact: String,
-    repo: String,
-    github: String,
-    demo: String,
-  },
-  { timestamps: true },
+	{
+		title: { type: String, required: true, trim: true },
+		slug: { type: String, required: true, unique: true, trim: true },
+		category: {
+			type: String,
+			required: true,
+			trim: true,
+			default: "Full Stack",
+		},
+		status: {
+			type: String,
+			required: true,
+			trim: true,
+			enum: ["Completed", "In Progress", "Archived"],
+			default: "In Progress",
+		},
+		description: { type: String, required: true },
+		impact: { type: String, trim: true },
+		techStack: [String],
+		repo: { type: String, trim: true },
+		demo: { type: String, trim: true },
+		thumbnail: { type: String, trim: true },
+	},
+	{ timestamps: true },
 );
 
-export default mongoose.model('Project', projectSchema);
+export default mongoose.model("Project", projectSchema);
