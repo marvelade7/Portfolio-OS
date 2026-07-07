@@ -14,8 +14,8 @@ import { connectDB } from "./config/db.js";
 import portfolioRoutes from "./routes/portfolioRoutes.js";
 
 const app = express();
-const port = Number(process.env.PORT || 5181);
-const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5180")
+const port = Number(process.env.PORT);
+const allowedOrigins = (process.env.CLIENT_ORIGIN)
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
