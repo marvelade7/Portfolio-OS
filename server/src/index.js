@@ -1,13 +1,17 @@
-import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
+import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import { connectDB } from "./config/db.js";
 import portfolioRoutes from "./routes/portfolioRoutes.js";
-
-dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT || 5181);
@@ -67,18 +71,10 @@ app.use((error, req, res, next) => {
     });
 });
 
-// await connectDB();
+await connectDB();
 
 const server = app.listen(port, () => {
     console.log(`Ubuntu portfolio API listening on http://localhost:${port}`);
-});
-
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-    console.log("MongoDB connected");
-})
-.catch((error) => {
-    console.error("MongoDB connection error:", error);
 });
 
 process.on("SIGTERM", shutdown);
