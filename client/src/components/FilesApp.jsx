@@ -41,6 +41,11 @@ export default function FilesApp({ onOpenProjectDialog, portfolio }) {
         [projects],
     );
 
+    const activeCategoryFolders = useMemo(
+        () => categoryFolders.filter((folder) => folder.count > 0),
+        [categoryFolders],
+    );
+
     const visibleProjects = selectedCategory
         ? projects.filter((project) => project.category === selectedCategory)
         : projects;
@@ -74,7 +79,7 @@ export default function FilesApp({ onOpenProjectDialog, portfolio }) {
                 </button>
 
                 <div className="mt-3 space-y-1">
-                    {categoryFolders.map((folder) => (
+                    {activeCategoryFolders.map((folder) => (
                         <button
                             key={folder.category}
                             onClick={() => openCategory(folder.category)}
@@ -106,9 +111,18 @@ export default function FilesApp({ onOpenProjectDialog, portfolio }) {
                 />
 
                 <div className="min-h-0 flex-1 overflow-auto p-5">
-                    {selectedCategory === null ? (
+                    {projects.length === 0 ? (
+                        <div className="grid h-full place-items-center text-center text-sm text-[#765f70]">
+                            <div>
+                                <Folder size={48} className="mx-auto text-[#8a7883] opacity-50" />
+                                <div className="mt-3 font-semibold text-[#300A24] text-lg">
+                                    No projects yet.
+                                </div>
+                            </div>
+                        </div>
+                    ) : selectedCategory === null ? (
                         <FolderGrid
-                            folders={categoryFolders}
+                            folders={activeCategoryFolders}
                             onOpenCategory={openCategory}
                         />
                     ) : (
