@@ -29,10 +29,25 @@ export default function Window({ app, children, windowState, active }) {
 
   const Icon = app.icon;
   const maximized = windowState.maximized;
-  const position = maximized ? MAXIMIZED_BOUNDS : windowState.position;
-  const size = maximized ? MAXIMIZED_BOUNDS : windowState.size;
-  const boundsWidth = typeof size.width === 'number' ? size.width : windowState.size.width;
-  const boundsHeight = typeof size.height === 'number' ? size.height : windowState.size.height;
+
+  // When maximized the outer div handles all sizing via CSS calc;
+  // pass 100%/100% to Resizable so it fills that container without
+  // needing to resolve the calc() strings itself.
+  const outerStyle = maximized
+    ? { width: MAXIMIZED_BOUNDS.width, height: MAXIMIZED_BOUNDS.height }
+    : { width: windowState.size.width, height: windowState.size.height };
+
+  const position = maximized
+    ? { x: MAXIMIZED_BOUNDS.x, y: MAXIMIZED_BOUNDS.y }
+    : windowState.position;
+
+  const resizableSize = maximized
+    ? { width: '100%', height: '100%' }
+    : windowState.size;
+
+  // Numeric width/height used only for Draggable bounds (needs numbers).
+  const boundsWidth = windowState.size.width;
+  const boundsHeight = windowState.size.height;
 
   function focusWindow() {
     bringToFront(windowState.id);
@@ -75,8 +90,7 @@ export default function Window({ app, children, windowState, active }) {
         className="absolute"
         style={{
           zIndex: windowState.zIndex,
-          width: size.width,
-          height: size.height,
+          ...outerStyle,
         }}
       >
           <motion.section
@@ -93,7 +107,7 @@ export default function Window({ app, children, windowState, active }) {
             onPointerDown={focusWindow}
         >
             <Resizable
-              size={size}
+              size={resizableSize}
               minWidth={320}
               minHeight={280}
               maxWidth={maximized ? undefined : window.innerWidth - 84}
@@ -151,6 +165,7 @@ export default function Window({ app, children, windowState, active }) {
     </Draggable>
   );
 }
+
 
 function TrafficLight({ children, color, label, onClick }) {
   const colorClass = {

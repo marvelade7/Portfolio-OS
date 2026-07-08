@@ -14,7 +14,8 @@ export default function Launcher({ apps, open, onOpenApp, onClose }) {
   return (
     <div
       data-no-desktop-menu="true"
-      className="absolute inset-0 z-[35] bg-[#300A24]/72 pl-20 pt-10 backdrop-blur-2xl"
+      className="absolute inset-0 z-[9999] pl-20 pt-10"
+      style={{ background: 'radial-gradient(ellipse at 60% 40%, #3d1030 0%, #1a0716 45%, #0d0509 100%)' }}
       onClick={onClose}
     >
       <div className="mx-auto mt-10 w-full max-w-4xl px-6" onClick={(event) => event.stopPropagation()}>
