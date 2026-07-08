@@ -15,7 +15,7 @@ import portfolioRoutes from "./routes/portfolioRoutes.js";
 
 const app = express();
 const port = Number(process.env.PORT);
-const allowedOrigins = (process.env.CLIENT_ORIGIN)
+const allowedOrigins = (process.env.CLIENT_ORIGIN, process.env.CLIENT_ORIGIN_SECOND)
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
