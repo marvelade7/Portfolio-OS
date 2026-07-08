@@ -19,6 +19,12 @@ import TerminalApp from "./TerminalApp.jsx";
 import TopBar from "./TopBar.jsx";
 import WindowManager from "./WindowManager.jsx";
 import DesktopIcon from "./os/DesktopIcon.jsx";
+import BrowserIcon from "./os/BrowserIcon.jsx";
+import EmailIcon from "./os/EmailIcon.jsx";
+import FolderIcon from "./os/FolderIcon.jsx";
+import ProjectsIcon from "./os/ProjectsIcon.jsx";
+import TerminalIcon from "./os/TerminalIcon.jsx";
+import AppearanceIcon from "./os/AppearanceIcon.jsx";
 import { fallbackPortfolio } from "../data/portfolio.js";
 import { loadPortfolio } from "../lib/api.js";
 import { selectActiveWindow, useWindowStore } from "../store/windowStore.js";
@@ -33,6 +39,7 @@ const apps = [
         title: "About Me",
         dockTitle: "Browser (About Me)",
         icon: Globe2,
+        launcherIcon: BrowserIcon,
         width: 760,
         height: 560,
         position: { x: 118, y: 74 },
@@ -42,6 +49,7 @@ const apps = [
         id: "projects",
         title: "Projects",
         icon: Briefcase,
+        launcherIcon: ProjectsIcon,
         width: 860,
         height: 590,
         position: { x: 178, y: 94 },
@@ -52,6 +60,7 @@ const apps = [
         title: "Terminal",
         dockTitle: "Terminal",
         icon: Terminal,
+        launcherIcon: TerminalIcon,
         width: 760,
         height: 480,
         position: { x: 250, y: 122 },
@@ -62,6 +71,7 @@ const apps = [
         title: "Files",
         dockTitle: "Files",
         icon: Folder,
+        launcherIcon: FolderIcon,
         width: 780,
         height: 520,
         position: { x: 220, y: 86 },
@@ -72,6 +82,7 @@ const apps = [
         title: "Contact",
         dockTitle: "Contact",
         icon: Settings,
+        launcherIcon: EmailIcon,
         width: 760,
         height: 530,
         position: { x: 300, y: 112 },
@@ -81,6 +92,7 @@ const apps = [
         id: "settings",
         title: "Appearance",
         icon: MonitorCog,
+        launcherIcon: AppearanceIcon,
         width: 650,
         height: 430,
         position: { x: 360, y: 120 },

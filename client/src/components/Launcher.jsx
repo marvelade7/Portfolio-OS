@@ -32,16 +32,21 @@ export default function Launcher({ apps, open, onOpenApp, onClose }) {
 
         <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {filteredApps.map((app) => {
-            const Icon = app.icon;
+            const LauncherIcon = app.launcherIcon;
+            const FallbackIcon = app.icon;
             return (
               <button
                 key={app.id}
                 onClick={() => onOpenApp(app.id)}
                 className="flex h-32 flex-col items-center justify-center gap-3 rounded-lg bg-white/8 text-white transition hover:bg-white/16 focus:bg-white/16 focus:outline-none"
               >
-                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#E95420] shadow-lg">
-                  <Icon size={30} />
-                </span>
+                {LauncherIcon ? (
+                  <LauncherIcon className="h-14 w-14 drop-shadow-lg" />
+                ) : (
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#E95420] shadow-lg">
+                    <FallbackIcon size={30} />
+                  </span>
+                )}
                 <span className="max-w-full px-2 text-center text-sm font-medium">{app.title}</span>
               </button>
             );
