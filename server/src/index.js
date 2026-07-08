@@ -15,9 +15,10 @@ import portfolioRoutes from "./routes/portfolioRoutes.js";
 
 const app = express();
 const port = Number(process.env.PORT);
-const allowedOrigins = (process.env.CLIENT_ORIGIN, process.env.CLIENT_ORIGIN_SECOND)
-    .split(",")
-    .map((origin) => origin.trim())
+const allowedOrigins = [process.env.CLIENT_ORIGIN, process.env.CLIENT_ORIGIN_SECOND]
+    .filter(Boolean)
+    .flatMap((origin) => origin.split(","))
+    .map((origin) => origin.trim().replace(/\/$/, "")) // strip trailing slash
     .filter(Boolean);
 
 app.use(
